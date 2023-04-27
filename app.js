@@ -1,13 +1,12 @@
-// For Menu Buttons
 const menuButtons = document.querySelector('.menuBtns');
 
 const menuCategories = ['All', 'Breakfast', 'Lunch', 'Shakes', 'Brunch', 'Dinner'];
 const menuBtns = []
 
 menuCategories.forEach((category) => {
-    let HtmlButtonsTags = `<button class="menuCatgryBtn ${category}">${category}</button>`;
+  let HtmlButtonsTags = `<button onclick="process('${category}')" class="menuCatgryBtn ${category}">${category}</button>`;
 
-    menuBtns.push(HtmlButtonsTags);
+  menuBtns.push(HtmlButtonsTags);
 })
 
 menuButtons.innerHTML = menuBtns.join('');
@@ -180,181 +179,214 @@ const menuItems = [
 ]
 
 function menuList() {
-    const menuItemCards = [];
+  const menuItemCards = [];
 
-    menuItems.forEach((item) => {
-        let htmlMenuCard = `<div class="menuItem col-12 col-lg-6">
-                                <div class="itemImage">
-                                    <img src="${item.image}" alt="">
+  menuItems.forEach((item) => {
+    let htmlMenuCard = `<div class="menuItem col-12 col-lg-6">
+                            <div class="itemImage">
+                                <img src="${item.image}" alt="">
+                            </div>
+                            <div class="itemText">
+                                <div class="upperText">
+                                    <h2 class="m-0">${item.itemName}</h2>
+                                    <h3 class="m-0">${item.price}</h3>
                                 </div>
-                                <div class="itemText">
-                                    <div class="upperText">
-                                        <h2 class="m-0">${item.itemName}</h2>
-                                        <h3 class="m-0">${item.price}</h3>
-                                    </div>
-                                    <div class="lowerText">
-                                        <p class="m-0">${item.description}</p>
-                                    </div>
+                                <div class="lowerText">
+                                    <p class="m-0">${item.description}</p>
                                 </div>
-                            </div>`
+                            </div>
+                        </div>`
 
-        menuItemCards.push(htmlMenuCard);
-    })
+    menuItemCards.push(htmlMenuCard);
+  })
 
-    return menuItemsArea.innerHTML = menuItemCards.join('');
+  return menuItemsArea.innerHTML = menuItemCards.join('');
 }
 menuList();
 
-
-// For Buttons Event Function
-const allBtn = document.querySelector('.All');
-const breakfastBtn = document.querySelector('.Breakfast');
-const lunchBtn = document.querySelector('.Lunch');
-const shakesBtn = document.querySelector('.Shakes');
-const brunchBtn = document.querySelector('.Brunch');
-const dinnerBtn = document.querySelector('.Dinner');
-
 // For All Button Function
+const allBtn = document.querySelector('.All');
 allBtn.addEventListener('click', () => {
-    menuList()
+  menuList()
 })
 
-// For Breakfast Button Function
-breakfastBtn.addEventListener('click', () => {
-    const breakfastItemCards = [];
 
-    menuItems.forEach((item) => {
-        if(item.category == "breakfast"){
-            let htmlMenuCard = `<div class="menuItem col-12 col-lg-6">
-                                    <div class="itemImage">
-                                        <img src="${item.image}" alt="">
-                                    </div>
-                                    <div class="itemText">
-                                        <div class="upperText">
-                                            <h2 class="m-0">${item.itemName}</h2>
-                                            <h3 class="m-0">${item.price}</h3>
-                                        </div>
-                                        <div class="lowerText">
-                                            <p class="m-0">${item.description}</p>
-                                        </div>
-                                    </div>
-                                </div>`
+function process(param) {
 
-            breakfastItemCards.push(htmlMenuCard);
-        }
+//   console.log(param)
+  const filteredItemCards = menuItems.filter((item) => item.category.toLowerCase() === param.toLowerCase()).map((item) => {
+    return `<div class="menuItem col-12 col-lg-6">
+                <div class="itemImage">
+                    <img src="${item.image}" alt="">
+                </div>
+                <div class="itemText">
+                    <div class="upperText">
+                        <h2 class="m-0">${item.itemName}</h2>
+                        <h3 class="m-0">${item.price}</h3>
+                    </div>
+                    <div class="lowerText">
+                        <p class="m-0">${item.description}</p>
+                    </div>
+                </div>
+            </div>`})
+//   console.log(filteredItemCards)
+  menuItemsArea.innerHTML = filteredItemCards.join("")
+  
+};
+
+
+
+// ---------------------------------> Another Method <---------------------------------
+
+// // For Buttons Event Function
+// const allBtn = document.querySelector('.All');
+// const breakfastBtn = document.querySelector('.Breakfast');
+// const lunchBtn = document.querySelector('.Lunch');
+// const shakesBtn = document.querySelector('.Shakes');
+// const brunchBtn = document.querySelector('.Brunch');
+// const dinnerBtn = document.querySelector('.Dinner');
+
+// // For All Button Function
+// allBtn.addEventListener('click', () => {
+//     menuList()
+// })
+
+// // For Breakfast Button Function
+// breakfastBtn.addEventListener('click', () => {
+//     const breakfastItemCards = [];
+
+//     menuItems.forEach((item) => {
+//         if(item.category == "breakfast"){
+//             let htmlMenuCard = `<div class="menuItem col-12 col-lg-6">
+//                                     <div class="itemImage">
+//                                         <img src="${item.image}" alt="">
+//                                     </div>
+//                                     <div class="itemText">
+//                                         <div class="upperText">
+//                                             <h2 class="m-0">${item.itemName}</h2>
+//                                             <h3 class="m-0">${item.price}</h3>
+//                                         </div>
+//                                         <div class="lowerText">
+//                                             <p class="m-0">${item.description}</p>
+//                                         </div>
+//                                     </div>
+//                                 </div>`
+
+//             breakfastItemCards.push(htmlMenuCard);
+//         }
                             
-    })
-    menuItemsArea.innerHTML = breakfastItemCards.join('');
-})
+//     })
+//     menuItemsArea.innerHTML = breakfastItemCards.join('');
+// })
 
-// For Lunch Button Function
-lunchBtn.addEventListener('click', () => {
-    const lunchItemCards = [];
+// // For Lunch Button Function
+// lunchBtn.addEventListener('click', () => {
+//     const lunchItemCards = [];
 
-    menuItems.forEach((item) => {
-        if(item.category == "lunch"){
-            let htmlMenuCard = `<div class="menuItem col-12 col-lg-6">
-                                    <div class="itemImage">
-                                        <img src="${item.image}" alt="">
-                                    </div>
-                                    <div class="itemText">
-                                        <div class="upperText">
-                                            <h2 class="m-0">${item.itemName}</h2>
-                                            <h3 class="m-0">${item.price}</h3>
-                                        </div>
-                                        <div class="lowerText">
-                                            <p class="m-0">${item.description}</p>
-                                        </div>
-                                    </div>
-                                </div>`
+//     menuItems.forEach((item) => {
+//         if(item.category == "lunch"){
+//             let htmlMenuCard = `<div class="menuItem col-12 col-lg-6">
+//                                     <div class="itemImage">
+//                                         <img src="${item.image}" alt="">
+//                                     </div>
+//                                     <div class="itemText">
+//                                         <div class="upperText">
+//                                             <h2 class="m-0">${item.itemName}</h2>
+//                                             <h3 class="m-0">${item.price}</h3>
+//                                         </div>
+//                                         <div class="lowerText">
+//                                             <p class="m-0">${item.description}</p>
+//                                         </div>
+//                                     </div>
+//                                 </div>`
 
-            lunchItemCards.push(htmlMenuCard);
-        }
+//             lunchItemCards.push(htmlMenuCard);
+//         }
                             
-    })
-    menuItemsArea.innerHTML = lunchItemCards.join('');
-})
+//     })
+//     menuItemsArea.innerHTML = lunchItemCards.join('');
+// })
 
-// For Shakes Button Function
-shakesBtn.addEventListener('click', () => {
-    const shakesItemCards = [];
+// // For Shakes Button Function
+// shakesBtn.addEventListener('click', () => {
+//     const shakesItemCards = [];
 
-    menuItems.forEach((item) => {
-        if(item.category == "shakes"){
-            let htmlMenuCard = `<div class="menuItem col-12 col-lg-6">
-                                    <div class="itemImage">
-                                        <img src="${item.image}" alt="">
-                                    </div>
-                                    <div class="itemText">
-                                        <div class="upperText">
-                                            <h2 class="m-0">${item.itemName}</h2>
-                                            <h3 class="m-0">${item.price}</h3>
-                                        </div>
-                                        <div class="lowerText">
-                                            <p class="m-0">${item.description}</p>
-                                        </div>
-                                    </div>
-                                </div>`
+//     menuItems.forEach((item) => {
+//         if(item.category == "shakes"){
+//             let htmlMenuCard = `<div class="menuItem col-12 col-lg-6">
+//                                     <div class="itemImage">
+//                                         <img src="${item.image}" alt="">
+//                                     </div>
+//                                     <div class="itemText">
+//                                         <div class="upperText">
+//                                             <h2 class="m-0">${item.itemName}</h2>
+//                                             <h3 class="m-0">${item.price}</h3>
+//                                         </div>
+//                                         <div class="lowerText">
+//                                             <p class="m-0">${item.description}</p>
+//                                         </div>
+//                                     </div>
+//                                 </div>`
 
-            shakesItemCards.push(htmlMenuCard);
-        }
+//             shakesItemCards.push(htmlMenuCard);
+//         }
                             
-    })
-    menuItemsArea.innerHTML = shakesItemCards.join('');
-})
+//     })
+//     menuItemsArea.innerHTML = shakesItemCards.join('');
+// })
 
-// For Brunch Button Function
-brunchBtn.addEventListener('click', () => {
-    const brunchItemCards = [];
+// // For Brunch Button Function
+// brunchBtn.addEventListener('click', () => {
+//     const brunchItemCards = [];
 
-    menuItems.forEach((item) => {
-        if(item.category == "brunch"){
-            let htmlMenuCard = `<div class="menuItem col-12 col-lg-6">
-                                    <div class="itemImage">
-                                        <img src="${item.image}" alt="">
-                                    </div>
-                                    <div class="itemText">
-                                        <div class="upperText">
-                                            <h2 class="m-0">${item.itemName}</h2>
-                                            <h3 class="m-0">${item.price}</h3>
-                                        </div>
-                                        <div class="lowerText">
-                                            <p class="m-0">${item.description}</p>
-                                        </div>
-                                    </div>
-                                </div>`
+//     menuItems.forEach((item) => {
+//         if(item.category == "brunch"){
+//             let htmlMenuCard = `<div class="menuItem col-12 col-lg-6">
+//                                     <div class="itemImage">
+//                                         <img src="${item.image}" alt="">
+//                                     </div>
+//                                     <div class="itemText">
+//                                         <div class="upperText">
+//                                             <h2 class="m-0">${item.itemName}</h2>
+//                                             <h3 class="m-0">${item.price}</h3>
+//                                         </div>
+//                                         <div class="lowerText">
+//                                             <p class="m-0">${item.description}</p>
+//                                         </div>
+//                                     </div>
+//                                 </div>`
 
-            brunchItemCards.push(htmlMenuCard);
-        }
+//             brunchItemCards.push(htmlMenuCard);
+//         }
                             
-    })
-    menuItemsArea.innerHTML = brunchItemCards.join('');
-})
+//     })
+//     menuItemsArea.innerHTML = brunchItemCards.join('');
+// })
 
-// For Dinner Button Function
-dinnerBtn.addEventListener('click', () => {
-    const dinnerItemCards = [];
+// // For Dinner Button Function
+// dinnerBtn.addEventListener('click', () => {
+//     const dinnerItemCards = [];
 
-    menuItems.forEach((item) => {
-        if(item.category == "dinner"){
-            let htmlMenuCard = `<div class="menuItem col-12 col-lg-6">
-                                    <div class="itemImage">
-                                        <img src="${item.image}" alt="">
-                                    </div>
-                                    <div class="itemText">
-                                        <div class="upperText">
-                                            <h2 class="m-0">${item.itemName}</h2>
-                                            <h3 class="m-0">${item.price}</h3>
-                                        </div>
-                                        <div class="lowerText">
-                                            <p class="m-0">${item.description}</p>
-                                        </div>
-                                    </div>
-                                </div>`
+//     menuItems.forEach((item) => {
+//         if(item.category == "dinner"){
+//             let htmlMenuCard = `<div class="menuItem col-12 col-lg-6">
+//                                     <div class="itemImage">
+//                                         <img src="${item.image}" alt="">
+//                                     </div>
+//                                     <div class="itemText">
+//                                         <div class="upperText">
+//                                             <h2 class="m-0">${item.itemName}</h2>
+//                                             <h3 class="m-0">${item.price}</h3>
+//                                         </div>
+//                                         <div class="lowerText">
+//                                             <p class="m-0">${item.description}</p>
+//                                         </div>
+//                                     </div>
+//                                 </div>`
 
-            dinnerItemCards.push(htmlMenuCard);
-        }
+//             dinnerItemCards.push(htmlMenuCard);
+//         }
                             
-    })
-    menuItemsArea.innerHTML = dinnerItemCards.join('');
-})
+//     })
+//     menuItemsArea.innerHTML = dinnerItemCards.join('');
+// })
