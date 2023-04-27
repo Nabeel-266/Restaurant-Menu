@@ -32,7 +32,7 @@ body{
     justify-content: center;
     align-items: center;
     padding: 30px 0px 20px 0px;
-    background-color: rgba(255, 166, 0, 0.8);
+    background-color: #303030;
     border-radius: 0% 0% 100% 100%;
 }
 .menuHdng{
@@ -45,7 +45,7 @@ body{
 }
 .hdUnderline{
     height: 4px;
-    background-color: #ffffff;
+    background-color: #ffa600;
     border-radius: 10px;
 }
 
@@ -83,11 +83,11 @@ body{
 
 .menuItemsArea{
     /* background-color: aqua; */
-    padding: 40px 0px !important;
+    padding: 40px 0px 20px 0px !important;
 }
 .menuItem{
     /* background-color: #ffa600; */
-    margin-bottom: 40px !important;
+    margin-bottom: 30px !important;
     padding: 5px 10px !important;
     display: flex;
 }
